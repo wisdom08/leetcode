@@ -1,19 +1,19 @@
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
+    int[] copy = nums.clone();
         int count = 0;
-        int length = nums.length;
-        int[] result = new int[length];
-        for (int i = 0; i < length; i++) {
-            count = 0;
-            for (int j = 0; j < length; j++) {
-                if (i != j) {
-                    if (nums[i] > nums[j]) count++;
-                }
+        Arrays.sort(copy);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i : copy) {
+            if (!map.containsKey(i)) {
+                map.put(i, count);
             }
-            result[i] = count;
+            count++;
         }
 
-
-        return result;
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = map.get(nums[i]);
+        }
+        return nums;
     }
 }
