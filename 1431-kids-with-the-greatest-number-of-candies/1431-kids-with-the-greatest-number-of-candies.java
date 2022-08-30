@@ -9,11 +9,7 @@ class Solution {
         }
 
         for (int i = 0; i < length; i++) {
-            if (candies[i] + extraCandies >= max) {
-                result[i] = true;
-            } else {
-                result[i] = false;
-            }
+            result[i] = candies[i] + extraCandies >= max;
         }
         return Arrays.stream(result).toList();
     }
