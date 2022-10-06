@@ -2,7 +2,21 @@ import java.util.Arrays;
 
 class Solution {
     public int majorityElement(int[] nums) {
-       Arrays.sort(nums);
-        return nums[nums.length / 2];
+         int potentialMajority = nums[0];
+        int count = 1;
+        for (int num : nums) {
+            if (potentialMajority == num) {
+                ++count;
+            } else {
+                --count;
+            }
+
+            if (count == 0) {
+                potentialMajority = num;
+                count = 1;
+            }
+        }
+
+        return potentialMajority;
     }
 }
